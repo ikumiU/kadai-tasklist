@@ -96,7 +96,7 @@ class TasksController extends Controller
        // putまたはpatchでmessages/idにアクセスされた場合の「更新処理」
     public function update(Request $request, $id)
     {
-        $task = Task::find("id");
+        $task = Task::find("$id");
         $task->content = $request->content;
         $task->save();
         
@@ -112,6 +112,9 @@ class TasksController extends Controller
        // deleteでmessages/idにアクセスされた場合の「削除処理」
     public function destroy($id)
     {
-        //
+        $task = Task::find($id);
+        $task->delete();
+        
+        return redirect("/");
     }
 }
