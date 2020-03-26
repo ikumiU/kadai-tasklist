@@ -47,7 +47,9 @@ class TasksController extends Controller
     // postでmessages/にアクセスされた場合の「新規登録処理」 
     public function store(Request $request)
     {
-        //バリデーション足してない
+        $this->validate($request, [
+            "status" => "required|max:10",
+            ]);
         
         
         
@@ -101,8 +103,10 @@ class TasksController extends Controller
        // putまたはpatchでmessages/idにアクセスされた場合の「更新処理」
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            "status" => "required|max:10",
+            ]);
         
-        //バリデーション未追加
         
         
         $task = Task::find("$id");
