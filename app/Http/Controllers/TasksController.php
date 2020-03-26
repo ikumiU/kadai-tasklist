@@ -47,7 +47,12 @@ class TasksController extends Controller
     // postでmessages/にアクセスされた場合の「新規登録処理」 
     public function store(Request $request)
     {
+        //バリデーション足してない
+        
+        
+        
         $task = new Task;
+        $task->status = $request->status;  //追加
         $task->content = $request->content;
         $task->save();
         
@@ -96,7 +101,12 @@ class TasksController extends Controller
        // putまたはpatchでmessages/idにアクセスされた場合の「更新処理」
     public function update(Request $request, $id)
     {
+        
+        //バリデーション未追加
+        
+        
         $task = Task::find("$id");
+        $task->status = $request->status; //追加
         $task->content = $request->content;
         $task->save();
         
